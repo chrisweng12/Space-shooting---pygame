@@ -1,0 +1,130 @@
+1. Modules involed
+   (1) pygame
+   (2) random
+   (3) time
+
+2. Set the color and save it to a varaible by using rgb settings
+   (1) white = (255,255,255)
+   (2) black = (0,0,0)
+   (3) red = (255,0,0)
+   (4) green = (0,255,0)
+   (5) blue = (0,0,255)
+   (6) grey = (232, 232, 232, 1)
+
+3. Set the display sondition and save it to a variable
+   (1) height = 500
+   (2) width = 300
+   * A small notice, for the display in pygame, (0,0) is at the top left corner of the display, for the y axis, if you move down, the y-axis increases, on the contrary, if you move up, the y-axis decreases.
+
+4. Set a number for the frame per second and save it to a variable
+   (1) fps = 60
+
+5. Set a global variable for the pause function 
+   (this is needed because we need a pause and an unpause function, and because this will be written inside the game loop, so we need to set a global variable first)
+
+6. Space ship condition
+   (1) load the image into a variable
+   (2) set the width and height for the image
+
+7. Alien condition
+   (1) load the image into a variable
+   (2) set the width and height for the image
+   (bullets condition will be setted in the bullet object because it doesn't require an image)
+
+8. Initialize the game
+   (1) First, initialize the game with pygame.init(), telling the pygame that we are starting a game now
+   (2) Second, since we will load sound to the game, we also need to tell pygame that sound will be loaded by using pygame.mixer.init() this function
+   (3) Third, set a display up by using pygame.display.set_mode() and put the width and height we want, then save it to a variable called monitor
+   (4) Fourth, by using pygame.display.set_caption(), we can type in the title that we want for the game and it will show it on the top of the display
+
+9. Creating objects
+   * While creating objects, every objects need to inherit pygame.sprite.Sprite this function. What this function do is, it creates a rectangle around the image, each pixels will have it's (x,y), if you think about this, it is very convenient to locate the image's position and even changing it.
+   (1) spaceShip object
+       - First, load the image in
+       - Second, call out the function image.get_rect() to build up a rectangle around your image
+       - Third, set a place where you want the image to show up
+       - Fourth, set a speed for x and y axis to 0, because you will need to change the number when adding controls with it
+       - Fifth, setting up an update function, in this update function, it includes...
+          Moving right (for each K_RIGHT event, it will move 5 pixels right)
+          Moving left (for each K_LEFT event, it will move 5 pixels left) 
+          Moving up (for each K_UP event, it will move 5 pixels up)
+	  Moving down (for each K_DOWN event, it will move 5 pixels down)
+          * Since the speed for x axis and y axis is zero, we can add events on it to set the current position of spaceship
+	  * There are some conditions that need to be limited, we need to constrain the spaceship inside the display
+            a. When the right side of spaceship is bigger than the total width, we set the right side of spaceship equal to the width
+            b. When the left side of spaceship is smaller than 0, we set the left side of spaceship equal to 0
+            c. When the top side of spaceship is smaller than 0, we set the top side of spaceship equal 0
+	    d. When the bottom side of spaceship is bigger than the total height, we set the bottom side of spceship equal to the height
+       - Sixth, build up fire function for the spaceship 
+          * for this fire function, we need to add object bullet in it and feed the position of space ship to the bullet, and add a shooting sound while executing this fire function
+       - Seventh, assign this spaceShip object to a new variable called "Spaceship"
+    
+    (2) alien object  
+       - First, load the alienImg in
+       - Second, call out the function image.get_rect() to build up a rectangle around your image
+       - Third, give the x-axis and y-axis of where this alien object will appear (it will appear randomly in the x-axis and 100 pixels up the display)
+       - Fourth, set a primary speed for this alien
+       - Fifth, create an update function, where this alien can move doewnwards
+       - Sixth, in this update function, create a condtion, if you didn't shoot down the alien, it's speed will increase 3 pixels each time
+       - Seventh, assign this alien object to a new variable called "Alien"
+
+    (3) bullets object
+       - First, draw the image of this bullet with 10 pixels wide and 40 pixels high then fill this image with color blue
+       - Second, give the initial position to a x and y instead of a real position 
+         (this is because we want this bullet to be in the place where the spaceship is)
+       - Third, create an update function which this bullet can keep moving
+       - Fourth, set a condition, if this bullet moves out of the display, then use kill() function to delete this bullet image
+
+10. Load the sound by using pyame.mixer.Sound() this function. This function can load any sound you want. The sound being loaded includes..
+    (1) shooting_sound
+    (2) exploding_sound
+    (3) game_over_sound
+
+11. Create a sprite group by using pygame.sprite.Group(). Since we have a lot of sprite to update, it's easier to put them in a group and update the group all at once
+    (1) every_sprite is a variable created by this function, which contians all the sprite (spaceship, bullet, alien)
+    (2) There are also Bullet, enemy, ship these three different groups. By creating these groups differently, we can use functions such as collide to detect which group collide with each other in order to kill it.
+    (3) Add all the object into their sprite group
+
+12. Create a lose condition
+    (1) Call out the pygame.font.init() to start the font
+    (2) By using pygame.font.SysFont(), we can assign which font and the size of the font we want
+    (3) By using render, we can actually write down what we want to write on the display and assign it's color
+    (4) After the steps above are done, blit it to the display
+    (5) Last but not least, we need to flip the display to let the user see it
+    (6) So, basically, this lose function will jump out a word called "You lose", this will last for 3 seconds (by using time.sleep() function), after 3 seconds, this game will quit automatically by using pygame.quit()
+
+13. Creating more enemy by defining add function
+    (1) Since the enemy will be killed after the bullet and enemy object collide, we need another function to create infinite enemy
+    (2) By assigning enemy objetc to a new variable, a new enemy will be created
+    (3) After this new enemy was created, add it to the sprite group to do the update function
+    (4) Since we don't want just one enemy, we use a for loop to create more than one enemy, so in range 5, we will run this add function      
+      
+14. Create an introduction interface
+    (1) In this function, we set a flag which represents this function is true
+    (2) Create a while loop, while true, we will run this introduction function
+    (3) In the introduction there will be instructions telling them how to start a game and how to pause a game
+    (4) This introduction interface will need to detect key events.
+    (5) For the mouse click events, if the user click quit, then the code will run pygame.quit to quit the game
+    (6) For the keyboard event, if the user press [space], this introduction function will become false in order to junp of this while loop and start the game loop 
+
+15. Create a pausing function
+    (1) We have a global variable pause which is true, so we can create two function with this
+    (2) Create a unpause function by making this pause to false
+    (3) Create a pause function when it's true, since we need the game to do pause and unpause not only once, this is why we need to function, in order to make sure this boolean can reverse over and over again
+
+16. Create a game loop
+    (1) In this game loop. we need to calculate our kill count, so we set the kill count initially.
+    (2) The pause function will be used here, so we need to call out the global pause first.
+    (3) Set a flag called run and make a while loop, this while loop will run when run is true
+        - In this while loop, we set a timing.tick to tell how many times we update our display in a second
+        - We need events for quit function, when this is being activated, the game will quit
+        - There will be a [space] events, since we are in the game, when [space] triggers, the Spaceship.fire() needs to be trigger in order to fire the bullets
+        - There will be a [p] events, when this event triggers, pause will become true and activate paused this function
+    (4) In this game loop, we need to update all the object, because we put all the object to every_sprite this sprite group, we can update this group, so that every object will be updated
+    (5) We need to set a death condition, so when the spaceship and alien collides, the game_over_sound will be played and the lose function will initiate
+    (6) We need a kill condition, so when the bullet and enemy collide, kill count will plus 1 to calculate how many you kill. Besides this, the exploding sound will be played when each bullet and enemy collide
+    (7) We set the monitor to black and start the pygame.font.init this function to put kill count on the display
+    (8) Last but not least, after everything we've done so far, we need to flip the board so the user can see it
+
+
+ 
