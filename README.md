@@ -1,8 +1,8 @@
 # Space-shooting---pygame
 A little space shooting game made by pygame
 
-## 	Brief description of project
-###     1.	Modules contained
+# 	Project Intro
+##     1.	Modules contained
 #### (1)	Pygame
 #### (2)	Random
 #### (3)	Time
