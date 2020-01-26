@@ -40,3 +40,11 @@ A little space shooting game made by pygame
 - A project.py file that contains all the code in it, this file allows the user to simply run the file and initiate the game.  
 ### 4.	code description.txt
 - Includes the description of the code
+## References
+### 1. Youtube video
+- https://www.youtube.com/watch?v=VO8rTszcW4s
+- https://www.youtube.com/watch?v=ujOTNg17LjI&list=PLQVvvaa0QuDdLkP8MrOXLe_rKuf6r80KO
+### 2. Pygame official website
+- https://www.pygame.org/news
+### 3. Image website
+- https://opengameart.org/content/space-shooter-redux
