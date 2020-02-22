@@ -27,17 +27,17 @@ A little space shooting game made by pygame
 #### (2) Different function
 
 - Start game (Key_space)
-  ![intro](C:/assets/Intro_scene.png)
+  ![intro](./assets/Intro_scene.png)
 - Pause (Key_p)
 - Restart (Key_r)
 
-  ![Pause](C:/assets/Pause_Restart.png)
+  ![Pause](./assets/Pause_Restart.png)
 
 #### (3) Shooting the enemy
 
 ##### There is a “kill count” on the top left of the screen which user can see how many enemies they’ve killed
 
-![game](C:/assets/Gaming.png)
+![game](./assets/Gaming.png)
 
 #### (4) Exit game
 
