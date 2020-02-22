@@ -27,7 +27,9 @@ A little space shooting game made by pygame
 #### (2) Different function
 
 - Start game (Key_space)
+
   ![intro](./assets/Intro_scene.png)
+
 - Pause (Key_p)
 - Restart (Key_r)
 
